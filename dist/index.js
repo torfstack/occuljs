@@ -1,5 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const occul_1 = require("./occul");
-new occul_1.Occul().analyze("blurry.jpg");
+import { Occul } from "./occul.js";
+const blurryImageSharpness = await new Occul().analyze("blurry.jpg");
+const sharpImageSharpness = await new Occul().analyze("sharp.jpg");
+console.log("sharp image", sharpImageSharpness);
+console.log("blurry image", blurryImageSharpness);
 //# sourceMappingURL=index.js.map
