@@ -1,7 +1,8 @@
 import sharp, {Kernel} from "sharp";
+import {Corner} from "./Corner.js";
 
 export class Occul {
-    async analyze(imageUrl: string) {
+    public async analyze(imageUrl: string) {
         const img = sharp(imageUrl)
         const res = img.greyscale()
         const image = await res.convolve(laplaceKernel())
@@ -15,25 +16,23 @@ export class Occul {
                 console.log("WEIRD", value)
             }
         })
-        const mean = array.reduce((p, c) => p+c) / array.length
+        const mean = array.reduce((p, c) => p + c) / array.length
         return array.reduce((p, c) => p + Math.pow(c - mean, 2)) / (array.length - 1)
     }
 }
 
-function cannyXKernel(): Kernel {
-    return {
-        width: 3,
-        height: 3,
-        kernel: [-1, 0, 1, -2, 0, 2, -1, 0, 1]
-    }
-}
-
-function cannyYKernel(): Kernel {
-    return {
-        width: 3,
-        height: 3,
-        kernel: [-1, -2, -1, 0, 0, 0, 1, 2, 1]
-    }
+function corners(): Corner[] {
+    return [
+        Corner.TOP_LEFT,
+        Corner.TOP,
+        Corner.TOP_RIGHT,
+        Corner.LEFT,
+        Corner.CENTER,
+        Corner.RIGHT,
+        Corner.BOTTOM_LEFT,
+        Corner.BOTTOM,
+        Corner.BOTTOM_RIGHT
+    ]
 }
 
 function laplaceKernel(): Kernel {

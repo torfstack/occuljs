@@ -1,4 +1,4 @@
-import {Occul} from "./occul.js";
+import {Occul} from "./Occul.js";
 
 const blurryImageSharpness = await new Occul().analyze("blurry.jpg")
 const sharpImageSharpness = await new Occul().analyze("sharp.jpg")

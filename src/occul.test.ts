@@ -1,5 +1,5 @@
-import { expect, test } from 'vitest'
-import {Occul} from "./occul.js";
+import {expect, test} from 'vitest'
+import {Occul} from "./Occul.js";
 
 test('sharp image is has more rating than blurry image', async () => {
     const sharpRating = await new Occul().analyze("sharp.jpg")
